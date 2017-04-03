@@ -7,9 +7,11 @@ export default {
       done: false
     })
   },
+
   [toggleTodo.type] (context, todo) {
     context.commit(toggleTodo.type, todo)
   },
+
   [removeTodo.type] (context, todo) {
     context.commit(removeTodo.type, todo)
   }
