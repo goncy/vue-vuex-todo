@@ -13,6 +13,7 @@
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs",
     "deploy": "yarn build && git add -A . && git commit -am 'redeploy' && git push origin master && gh-pages -d dist"
   },
+  "homepage": "https://goncy.github.io/vue-vuex-todo/",
   "dependencies": {
     "async-action-creator": "^0.0.9",
     "gh-pages": "^0.12.0",
