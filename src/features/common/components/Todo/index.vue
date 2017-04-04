@@ -1,33 +1,37 @@
 <template>
-  <div class="hello">
+  <div class="todo">
     <h2>Things TODO</h2>
     <h3 @click="addTodo('Clicked')"></h3>
     <ul>
-      <li v-for="todo in todos" @click="toggleTodo(todo)">
+      <li v-for="todo in todos">
         <span v-if="todo.done" class="del-btn" @click="removeTodo(todo)">x</span>
-        <span :class="todo.done ? 'underlined' : ''">
+        <span @click="toggleTodo(todo)" :class="todo.done ? 'underlined' : ''">
           {{todo.text}}
         </span>
       </li>
     </ul>
     <input type="text" placeholder="TODO text" v-on:keyup.enter="submitTodo" />
+    <hr/>
+    <input type="button" value="Save list to memory" @click="saveToStorage" />
   </div>
 </template>
 
 <script>
 import {mapGetters, mapActions} from 'vuex'
 
-import {addTodo, toggleTodo, removeTodo} from '../../store/types'
+import {addTodo, toggleTodo, removeTodo, saveToStorage} from '../../store/types'
 
 export default {
-  name: 'hello',
+  name: 'todo',
   methods: {
     ...mapActions({
       addTodo: addTodo.type,
       toggleTodo: toggleTodo.type,
-      removeTodo: removeTodo.type
+      removeTodo: removeTodo.type,
+      saveToStorage: saveToStorage.type
     }),
     submitTodo (event) {
+      if (!event.target.value.replace(/\s/g, '')) return
       this.addTodo(event.target.value)
       event.target.value = ''
     }
@@ -49,7 +53,6 @@ ul {
 }
 
 li {
-  display: inline-block;
   margin: 0 10px;
 }
 

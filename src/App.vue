@@ -6,8 +6,13 @@
 </template>
 
 <script>
+import {getFromStorage} from 'features/common/store/types'
+
 export default {
-  name: 'app'
+  name: 'app',
+  beforeMount () {
+    this.$store.dispatch(getFromStorage.type)
+  }
 }
 </script>
 

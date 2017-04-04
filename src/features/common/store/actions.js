@@ -1,4 +1,5 @@
-import {addTodo, toggleTodo, removeTodo} from './types'
+import {addTodo, toggleTodo, removeTodo, getFromStorage, saveToStorage} from './types'
+import ls from '../../../store/localStorage'
 
 export default {
   [addTodo.type] (context, payload) {
@@ -14,5 +15,13 @@ export default {
 
   [removeTodo.type] (context, todo) {
     context.commit(removeTodo.type, todo)
+  },
+
+  [getFromStorage.type] (context, todo) {
+    context.commit(getFromStorage.type, ls.fetch())
+  },
+
+  [saveToStorage.type] (context, todo) {
+    context.commit(saveToStorage.type)
   }
 }
